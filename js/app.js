@@ -1,4 +1,12 @@
-/* TravelWise – SPA Router */
+/* TravelWise – SPA Router
+   ─────────────────────────────────────────────────────
+   On every route change:
+     1. Update window.digitalData  ← FIRST (so Launch reads fresh data)
+     2. Dispatch 'pagechange' event with enriched detail
+     3. Render the new page
+
+   Adobe Launch will listen for the 'pagechange' event.
+   Do NOT add Adobe Target / triggerView calls here. */
 
 // Intercept all [data-link] anchor clicks and push to history
 document.addEventListener('click', e => {
@@ -12,7 +20,7 @@ document.addEventListener('click', e => {
   }
 });
 
-// Navigate programmatically
+// Navigate programmatically (also used by page components)
 function navigateTo(path) {
   history.pushState({}, '', path);
   router();
@@ -33,8 +41,25 @@ function router() {
   const path = window.location.pathname;
 
   window.scrollTo({ top: 0, behavior: 'instant' });
-  window.dispatchEvent(new CustomEvent('pagechange', { detail: { path } }));
 
+  /* ── 1. Update data layer BEFORE dispatching event ── */
+  if (window.travelwise && window.travelwise.updateDataLayer) {
+    window.travelwise.updateDataLayer();
+  }
+
+  /* ── 2. Dispatch enriched pagechange event for Adobe Launch ── */
+  window.dispatchEvent(new CustomEvent('pagechange', {
+    detail: {
+      path:      path,
+      pageType:  window.travelwise ? window.travelwise.getPageType(path)  : null,
+      entityId:  window.travelwise ? window.travelwise.getEntityId(path)  : null,
+      isLoggedIn: window.digitalData ? window.digitalData.user.isLoggedIn  : false,
+      userTier:   window.digitalData ? window.digitalData.user.loyaltyTier : null,
+      timestamp:  new Date().toISOString()
+    }
+  }));
+
+  /* ── 3. Render page ── */
   if (path === '/') {
     renderHome();
   } else if (path === '/destinations') {
@@ -59,7 +84,9 @@ function router() {
 // 404 page
 function render404(type) {
   document.title = '404 – Page Not Found – TravelWise';
-  const label = type ? `${type.charAt(0).toUpperCase() + type.slice(1)} not found` : 'Page not found';
+  const label = type
+    ? `${type.charAt(0).toUpperCase() + type.slice(1)} not found`
+    : 'Page not found';
 
   document.getElementById('app').innerHTML = `
     <div class="container">
