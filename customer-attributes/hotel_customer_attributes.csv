@@ -1,0 +1,31 @@
+customer_id,first_name,loyalty_tier,member_since,last_stay_date,total_hotel_stays,preferred_star_rating,preferred_amenities,avg_nights_per_stay,device_preference,email_opt_in,avg_spend_per_night_inr,referral_source
+TF001,Sarah,Gold,2024-03-15,2026-04-24,10,4,Pool;Spa;Free Wifi,4,desktop,TRUE,14000,google
+TF002,Michael,Silver,2025-09-10,2026-04-23,3,3,Free Wifi;Restaurant,3,mobile,TRUE,4500,twitter
+TF003,Parveen,Platinum,2023-11-02,2026-04-25,38,5,Pool;Spa;Butler Service;Fine Dining,6,desktop,TRUE,32000,friend
+TF004,Rajesh,Silver,2026-04-20,2026-04-22,1,3,Free Wifi;Restaurant,2,mobile,FALSE,2500,google
+TF005,Emily,Gold,2024-07-18,2026-04-21,9,4,Pool;Spa;Free Wifi,4,desktop,TRUE,12000,linkedin
+TF006,David,Silver,2025-12-05,2026-03-15,2,3,Free Wifi;Pool,3,mobile,TRUE,3500,reddit
+TF007,Priya,Platinum,2024-01-20,2026-04-24,28,5,Pool;Spa;Fine Dining;Gym,5,desktop,TRUE,28000,google
+TF008,James,Gold,2024-05-22,2026-04-25,12,4,Spa;Pool;Gym;Free Wifi,5,desktop,TRUE,15000,twitter
+TF009,Anita,Silver,2026-03-10,2026-04-18,1,3,Free Wifi;Restaurant,2,mobile,FALSE,2000,friend
+TF010,Robert,Silver,2025-06-15,2026-04-20,5,3,Free Wifi;Restaurant;Pool,3,desktop,TRUE,5000,google
+TF011,Neha,Gold,2024-09-08,2026-04-25,10,4,Pool;Spa;Beach Access;Free Wifi,4,mobile,TRUE,11000,instagram
+TF012,Tom,Platinum,2023-05-12,2026-04-25,45,5,Pool;Spa;Butler Service;Fine Dining;Gym,7,desktop,TRUE,42000,linkedin
+TF013,Lisa,Silver,2025-11-30,2026-04-10,3,3,Free Wifi;Restaurant,3,mobile,TRUE,3800,reddit
+TF014,Arjun,Gold,2024-08-25,2026-04-24,11,4,Pool;Spa;Free Wifi;Restaurant,4,desktop,TRUE,13500,google
+TF015,Sophie,Silver,2026-02-14,2026-04-22,1,3,Free Wifi;Pool,3,mobile,FALSE,3200,twitter
+TF016,Kevin,Gold,2024-10-10,2026-04-25,8,4,Pool;Free Wifi;Gym;Restaurant,4,desktop,TRUE,11500,friend
+TF017,Meera,Silver,2025-08-22,2026-04-19,2,3,Free Wifi;Restaurant,2,mobile,TRUE,2200,google
+TF018,Daniel,Platinum,2023-08-18,2026-04-24,32,5,Pool;Spa;Fine Dining;Butler Service,6,desktop,TRUE,38000,linkedin
+TF019,Kavya,Silver,2026-04-23,2026-04-25,1,3,Free Wifi;Restaurant,2,mobile,FALSE,2000,instagram
+TF020,Alex,Gold,2024-06-30,2026-04-23,10,4,Pool;Gym;Spa;Free Wifi,5,mobile,TRUE,12500,reddit
+TF021,Ishita,Silver,2025-07-05,2026-04-21,3,3,Free Wifi;Restaurant,2,mobile,TRUE,2800,google
+TF022,Mark,Gold,2024-04-12,2026-04-25,14,4,Pool;Spa;Free Wifi;Fine Dining,5,desktop,TRUE,16000,twitter
+TF023,Riya,Silver,2026-01-08,2026-02-20,1,3,Free Wifi;Pool,3,mobile,FALSE,2500,friend
+TF024,Chris,Platinum,2023-06-25,2026-04-25,50,5,Pool;Spa;Butler Service;Fine Dining;Helipad,7,desktop,TRUE,48000,google
+TF025,Ananya,Gold,2024-11-18,2026-04-24,7,4,Pool;Spa;Free Wifi,4,mobile,TRUE,10000,instagram
+TF026,Jennifer,Silver,2025-05-10,2026-04-22,4,3,Free Wifi;Restaurant;Gym,3,desktop,TRUE,4200,linkedin
+TF027,Vikram,Gold,2024-02-28,2026-04-25,15,4,Pool;Spa;Free Wifi;Restaurant,5,desktop,TRUE,17000,google
+TF028,Oliver,Silver,2026-03-25,2026-04-15,1,3,Free Wifi;Restaurant,2,mobile,FALSE,3000,reddit
+TF029,Shreya,Platinum,2023-09-14,2026-04-25,36,5,Pool;Spa;Fine Dining;Butler Service;Yoga,6,desktop,TRUE,35000,friend
+TF030,Ryan,Gold,2025-01-22,2026-04-24,6,4,Pool;Spa;Free Wifi,4,mobile,TRUE,9500,twitter
