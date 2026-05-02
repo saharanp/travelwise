@@ -50,8 +50,8 @@
 
   <title>TravelWise – Discover Your Next Adventure</title>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Styles — absolute path so deep routes like /destinations/goa resolve correctly -->
+  <link rel="stylesheet" href="/css/styles.css" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -70,28 +70,29 @@
   <div id="footer-root"></div>
 
   <!-- ======= DATA FILES (load first) ======= -->
-  <script src="js/data/destinations.js"></script>
-  <script src="js/data/hotels.js"></script>
-  <script src="js/data/users.js"></script>
-  <script src="js/data/entityMap.js"></script>
+  <!-- Absolute paths prevent broken requests on deep routes (e.g. /destinations/goa) -->
+  <script src="/js/data/destinations.js"></script>
+  <script src="/js/data/hotels.js"></script>
+  <script src="/js/data/users.js"></script>
+  <script src="/js/data/entityMap.js"></script>
 
   <!-- ======= COMPONENTS ======= -->
-  <script src="js/components/header.js"></script>
-  <script src="js/components/footer.js"></script>
-  <script src="js/components/destinationCard.js"></script>
-  <script src="js/components/hotelCard.js"></script>
+  <script src="/js/components/header.js"></script>
+  <script src="/js/components/footer.js"></script>
+  <script src="/js/components/destinationCard.js"></script>
+  <script src="/js/components/hotelCard.js"></script>
 
   <!-- ======= PAGES ======= -->
-  <script src="js/pages/home.js"></script>
-  <script src="js/pages/destinations.js"></script>
-  <script src="js/pages/destinationDetail.js"></script>
-  <script src="js/pages/hotels.js"></script>
-  <script src="js/pages/hotelDetail.js"></script>
-  <script src="js/pages/about.js"></script>
-  <script src="js/pages/contact.js"></script>
+  <script src="/js/pages/home.js"></script>
+  <script src="/js/pages/destinations.js"></script>
+  <script src="/js/pages/destinationDetail.js"></script>
+  <script src="/js/pages/hotels.js"></script>
+  <script src="/js/pages/hotelDetail.js"></script>
+  <script src="/js/pages/about.js"></script>
+  <script src="/js/pages/contact.js"></script>
 
   <!-- ======= APP (router – load last) ======= -->
-  <script src="js/app.js"></script>
+  <script src="/js/app.js"></script>
 
 </body>
 </html>
