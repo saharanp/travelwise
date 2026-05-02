@@ -164,6 +164,17 @@ function handleLogin() {
     };
   }
 
+  // Associate visitor ECID with CRM record for Customer Attributes targeting
+  if (window.visitor && typeof visitor.setCustomerIDs === 'function') {
+    visitor.setCustomerIDs({
+      "travelwise_users": {
+        "id": user.userId,
+        "authState": visitor.AuthState.AUTHENTICATED
+      }
+    });
+  }
+  console.log('[CustomerAttributes] Authenticated as:', user.userId);
+
   closeLoginModal();
   renderAuthArea();   // update header badge without page reload
 }
@@ -183,6 +194,16 @@ function handleLogout() {
       totalBookings: null, favoriteDestination: null
     };
   }
+
+  if (window.visitor && typeof visitor.setCustomerIDs === 'function') {
+    visitor.setCustomerIDs({
+      "travelwise_users": {
+        "id": "",
+        "authState": visitor.AuthState.LOGGED_OUT
+      }
+    });
+  }
+  console.log('[CustomerAttributes] Logged out');
 
   closeUserDropdown();
   renderAuthArea();
