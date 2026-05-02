@@ -4,25 +4,59 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="TravelWise – Discover extraordinary destinations and luxury hotels around the world." />
+
+  <!-- ============================ -->
+  <!-- ADOBE TARGET PRE-HIDING SNIPPET -->
+  <!-- This must load before Launch script to prevent FOOC (Flash of Original Content) -->
+  <!-- ============================ -->
+  <script>
+    //prehiding snippet for Adobe Target with asynchronous tags deployment
+    ;(function(win, doc, style, timeout) {
+    var STYLE_ID = 'at-body-style';
+    function getParent() {
+      return doc.getElementsByTagName('head')[0];
+    }
+    function addStyle(parent, id, def) {
+      if (!parent) {
+        return;
+      }
+      var style = doc.createElement('style');
+      style.id = id;
+      style.innerHTML = def;
+      parent.appendChild(style);
+    }
+    function removeStyle(parent, id) {
+      if (!parent) {
+        return;
+      }
+      var style = doc.getElementById(id);
+      if (!style) {
+        return;
+      }
+      parent.removeChild(style);
+    }
+    addStyle(getParent(), STYLE_ID, style);
+    setTimeout(function() {
+      removeStyle(getParent(), STYLE_ID);
+    }, timeout);
+    }(window, document, "body {opacity: 0 !important}", 3000));
+  </script>
+
+  <!-- ============================ -->
+  <!-- ADOBE LAUNCH SCRIPT (Staging) -->
+  <!-- Loads Adobe Target and other extensions configured in Launch -->
+  <!-- ============================ -->
+  <script src="https://assets.adobedtm.com/6a203c8a0ff8/67eb21569d6f/launch-29a07282e6d7-staging.min.js" async></script>
+
   <title>TravelWise – Discover Your Next Adventure</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/styles.css" />
-
-  <!-- ============================ -->
-  <!-- ADOBE TARGET PRE-HIDING SNIPPET -->
-  <!-- Will be added before Launch script -->
-  <!-- ============================ -->
-
-  <!-- ============================ -->
-  <!-- ADOBE LAUNCH SCRIPT -->
-  <!-- <script src="LAUNCH_URL_HERE" async></script> -->
-  <!-- ============================ -->
 </head>
 <body>
 
