@@ -91,7 +91,7 @@ function injectLoginModal() {
           onkeydown="if(event.key==='Enter')handleLogin()" />
       </div>
 
-      <p class="modal-error" id="modal-error">Invalid User ID. Try one of the demo accounts above.</p>
+      <p class="modal-error" id="modal-error">Invalid User ID or password. Please try again.</p>
 
       <div style="display:flex;gap:.75rem;margin-top:1.25rem;">
         <button class="btn btn-primary" style="flex:1;justify-content:center;" onclick="handleLogin()">Login</button>
