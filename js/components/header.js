@@ -74,17 +74,9 @@ function injectLoginModal() {
         <button class="modal-close" onclick="closeLoginModal()" aria-label="Close">✕</button>
       </div>
 
-      <!-- Demo account hints -->
-      <div class="modal-hint">
-        <strong>Demo accounts (any password works):</strong><br>
-        USR_SILVER_001 · USR_SILVER_002<br>
-        USR_GOLD_001 · USR_GOLD_002<br>
-        USR_PLATINUM_001 · USR_PLATINUM_002
-      </div>
-
       <div class="form-group" style="margin-bottom:1rem;">
         <label for="modal-userid" style="font-size:.85rem;font-weight:600;display:block;margin-bottom:.35rem;">User ID</label>
-        <input type="text" id="modal-userid" placeholder="e.g. USR_GOLD_001"
+        <input type="text" id="modal-userid" placeholder="Enter your User ID"
           style="width:100%;padding:.7rem 1rem;border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:.9rem;outline:none;transition:var(--transition);"
           onfocus="this.style.borderColor='var(--color-primary)'"
           onblur="this.style.borderColor=''"
@@ -92,7 +84,7 @@ function injectLoginModal() {
       </div>
       <div class="form-group" style="margin-bottom:1rem;">
         <label for="modal-password" style="font-size:.85rem;font-weight:600;display:block;margin-bottom:.35rem;">Password</label>
-        <input type="password" id="modal-password" placeholder="Any password (demo)"
+        <input type="password" id="modal-password" placeholder="Enter your password"
           style="width:100%;padding:.7rem 1rem;border:1.5px solid var(--color-border);border-radius:var(--radius-md);font-size:.9rem;outline:none;transition:var(--transition);"
           onfocus="this.style.borderColor='var(--color-primary)'"
           onblur="this.style.borderColor=''"
