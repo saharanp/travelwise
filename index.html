@@ -43,6 +43,35 @@
   </script>
 
   <!-- ============================ -->
+  <!-- DIGITAL DATA LAYER — SESSION RESTORE -->
+  <!-- Runs synchronously before Launch so digitalData.user is populated -->
+  <!-- when Library Loaded fires (handles hard reload while logged in)   -->
+  <!-- ============================ -->
+  <script>
+    window.digitalData = window.digitalData || {};
+    try {
+      var _loggedIn = sessionStorage.getItem('travelwise_logged_in');
+      var _userRaw  = sessionStorage.getItem('travelwise_user');
+      if (_loggedIn === 'true' && _userRaw) {
+        var _user = JSON.parse(_userRaw);
+        window.digitalData.user = {
+          isLoggedIn:          true,
+          userId:              _user.userId,
+          name:                _user.name,
+          loyaltyTier:         _user.tier,
+          memberSince:         _user.memberSince,
+          totalBookings:       _user.totalBookings,
+          favoriteDestination: _user.favoriteDestination
+        };
+      } else {
+        window.digitalData.user = { isLoggedIn: false };
+      }
+    } catch (e) {
+      window.digitalData.user = { isLoggedIn: false };
+    }
+  </script>
+
+  <!-- ============================ -->
   <!-- ADOBE LAUNCH SCRIPT (Staging) -->
   <!-- Loads Adobe Target and other extensions configured in Launch -->
   <!-- ============================ -->
