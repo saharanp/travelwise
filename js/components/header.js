@@ -131,6 +131,55 @@ function closeLoginModal() {
   if (err) err.classList.remove('visible');
 }
 
+/* ── Adobe Customer Attributes helpers ──
+   Visitor.getInstance(ORG_ID) is the correct API when Launch's ECID
+   extension is used. AuthState lives on the class, not the instance.
+   Retries handle the async Launch load (up to 20 × 100 ms = 2 s). */
+
+function setCustomerIDsForUser(userId, retries) {
+  retries = retries || 0;
+  var ORG_ID = 'B504732B5D3B2A790A495ECF@AdobeOrg';
+  if (typeof Visitor !== 'undefined' && Visitor.getInstance && Visitor.AuthState) {
+    var v = Visitor.getInstance(ORG_ID);
+    if (v && typeof v.setCustomerIDs === 'function') {
+      v.setCustomerIDs({
+        'travelwise_users': {
+          'id': userId,
+          'authState': Visitor.AuthState.AUTHENTICATED
+        }
+      });
+      console.log('[CustomerAttributes] Authenticated as:', userId);
+      return;
+    }
+  }
+  if (retries < 20) {
+    setTimeout(function() { setCustomerIDsForUser(userId, retries + 1); }, 100);
+  } else {
+    console.warn('[CustomerAttributes] Visitor not ready after 2s');
+  }
+}
+
+function clearCustomerIDs(retries) {
+  retries = retries || 0;
+  var ORG_ID = 'B504732B5D3B2A790A495ECF@AdobeOrg';
+  if (typeof Visitor !== 'undefined' && Visitor.getInstance && Visitor.AuthState) {
+    var v = Visitor.getInstance(ORG_ID);
+    if (v && typeof v.setCustomerIDs === 'function') {
+      v.setCustomerIDs({
+        'travelwise_users': {
+          'id': '',
+          'authState': Visitor.AuthState.LOGGED_OUT
+        }
+      });
+      console.log('[CustomerAttributes] Logged out');
+      return;
+    }
+  }
+  if (retries < 20) {
+    setTimeout(function() { clearCustomerIDs(retries + 1); }, 100);
+  }
+}
+
 /* ── Handle login attempt ── */
 function handleLogin() {
   const userId = (document.getElementById('modal-userid')?.value || '').trim().toUpperCase();
@@ -165,15 +214,7 @@ function handleLogin() {
   }
 
   // Associate visitor ECID with CRM record for Customer Attributes targeting
-  if (window.visitor && typeof visitor.setCustomerIDs === 'function') {
-    visitor.setCustomerIDs({
-      "travelwise_users": {
-        "id": user.userId,
-        "authState": visitor.AuthState.AUTHENTICATED
-      }
-    });
-  }
-  console.log('[CustomerAttributes] Authenticated as:', user.userId);
+  setCustomerIDsForUser(user.userId);
 
   closeLoginModal();
   renderAuthArea();   // update header badge without page reload
@@ -195,15 +236,8 @@ function handleLogout() {
     };
   }
 
-  if (window.visitor && typeof visitor.setCustomerIDs === 'function') {
-    visitor.setCustomerIDs({
-      "travelwise_users": {
-        "id": "",
-        "authState": visitor.AuthState.LOGGED_OUT
-      }
-    });
-  }
-  console.log('[CustomerAttributes] Logged out');
+  // Clear visitor Customer Attributes on logout
+  clearCustomerIDs();
 
   closeUserDropdown();
   renderAuthArea();
