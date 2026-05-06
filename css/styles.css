@@ -33,6 +33,8 @@
 
   --transition: all 0.2s ease;
   --transition-slow: all 0.35s ease;
+
+  --hero-bg-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=80');
 }
 
 /* ---- Reset ---- */
@@ -508,7 +510,7 @@ p { color: var(--color-text-light); }
   content: '';
   position: absolute;
   inset: 0;
-  background: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=80') center/cover no-repeat;
+  background: var(--hero-bg-image) center/cover no-repeat;
   opacity: 0.25;
 }
 .hero-content {
