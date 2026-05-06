@@ -863,6 +863,8 @@ p { color: var(--color-text-light); }
 .hotel-name-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
 .hotel-star-display { display: flex; gap: 3px; color: #f59e0b; font-size: 1rem; }
 
+#recommended-hotels-container { margin: 3rem 0; }
+
 .hotel-detail-body { padding: 3rem 0; }
 .hotel-detail-grid {
   display: grid;

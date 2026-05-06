@@ -122,6 +122,9 @@ function renderDestinationDetail(slug) {
       </div>
     </div>
 
+    <!-- Adobe Target Recommendations placeholder -->
+    <div id="recommended-hotels-container"></div>
+
     <!-- Related Destinations -->
     <section class="section" style="background:#fff;">
       <div class="container">
