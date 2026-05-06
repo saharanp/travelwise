@@ -217,7 +217,8 @@ function handleLogin() {
   setCustomerIDsForUser(user.userId);
 
   closeLoginModal();
-  renderAuthArea();   // update header badge without page reload
+  renderAuthArea();
+  window.location.reload();
 }
 
 /* ── Handle logout ── */
@@ -241,6 +242,7 @@ function handleLogout() {
 
   closeUserDropdown();
   renderAuthArea();
+  window.location.reload();
 }
 
 /* ── Restore session on page load ── */
