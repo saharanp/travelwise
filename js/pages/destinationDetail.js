@@ -66,15 +66,7 @@ function renderDestinationDetail(slug) {
               </div>
             </div>
 
-            ${destHotels.length > 0 ? `
-            <div class="detail-section">
-              <h2>Hotels in ${dest.name}</h2>
-              <p style="margin-bottom:1.5rem;">Choose from our handpicked selection of ${destHotels.length} hotel${destHotels.length > 1 ? 's' : ''} in ${dest.name}.</p>
-              <div class="hotel-grid">
-                ${destHotels.map(h => renderHotelCard(h)).join('')}
-              </div>
-            </div>
-            ` : ''}
+            <div id="recommended-hotels-container"></div>
 
           </div>
 
@@ -121,9 +113,6 @@ function renderDestinationDetail(slug) {
         </div><!-- /detail-grid -->
       </div>
     </div>
-
-    <!-- Adobe Target Recommendations placeholder -->
-    <div id="recommended-hotels-container"></div>
 
     <!-- Related Destinations -->
     <section class="section" style="background:#fff;">
