@@ -680,6 +680,7 @@ p { color: var(--color-text-light); }
 }
 .page-hero h1 { color: #fff; margin-bottom: 0.75rem; }
 .page-hero p { color: rgba(255,255,255,0.8); font-size: 1.05rem; max-width: 520px; margin: 0 auto; }
+#offer-banner-slot { min-height: 0; }
 
 /* Breadcrumb */
 .breadcrumb {

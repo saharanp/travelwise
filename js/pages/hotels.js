@@ -15,6 +15,7 @@ function renderHotels() {
       <div class="container">
         <h1>Luxury Hotels</h1>
         <p>Browse 30 handpicked hotels across our destinations — from intimate eco-retreats to iconic five-star palaces.</p>
+        <div id="offer-banner-slot"></div>
       </div>
     </section>
 

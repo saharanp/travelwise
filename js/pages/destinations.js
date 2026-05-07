@@ -15,6 +15,7 @@ function renderDestinations() {
       <div class="container">
         <h1>Explore Destinations</h1>
         <p>Discover 20 handpicked destinations across India and the world — each offering a unique and unforgettable experience.</p>
+        <div id="offer-banner-slot"></div>
       </div>
     </section>
 
