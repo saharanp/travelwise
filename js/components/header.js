@@ -218,7 +218,8 @@ function handleLogin() {
 
   closeLoginModal();
   renderAuthArea();
-  window.location.reload();
+  // Skip reload inside VEC/iframe — it breaks the composer session
+  if (window.self === window.top) window.location.reload();
 }
 
 /* ── Handle logout ── */
@@ -242,7 +243,8 @@ function handleLogout() {
 
   closeUserDropdown();
   renderAuthArea();
-  window.location.reload();
+  // Skip reload inside VEC/iframe — it breaks the composer session
+  if (window.self === window.top) window.location.reload();
 }
 
 /* ── Restore session on page load ── */

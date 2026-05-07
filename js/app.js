@@ -60,22 +60,29 @@ function router() {
   }));
 
   /* ── 3. Render page ── */
-  if (path === '/') {
+  // at.js in VEC mode can redirect to /index.html — treat it as the root
+  const normalizedPath = path === '/index.html' ? '/' : path;
+
+  if (normalizedPath === '/') {
     renderHome();
-  } else if (path === '/destinations') {
+  } else if (normalizedPath === '/destinations') {
     renderDestinations();
-  } else if (path.startsWith('/destinations/')) {
-    const slug = path.replace('/destinations/', '').replace(/\/$/, '');
+  } else if (normalizedPath.startsWith('/destinations/')) {
+    const slug = normalizedPath.replace('/destinations/', '').replace(/\/$/, '');
     renderDestinationDetail(slug);
-  } else if (path === '/hotels') {
+  } else if (normalizedPath === '/hotels') {
     renderHotels();
-  } else if (path.startsWith('/hotels/')) {
-    const slug = path.replace('/hotels/', '').replace(/\/$/, '');
+  } else if (normalizedPath.startsWith('/hotels/')) {
+    const slug = normalizedPath.replace('/hotels/', '').replace(/\/$/, '');
     renderHotelDetail(slug);
-  } else if (path === '/about') {
+  } else if (normalizedPath === '/about') {
     renderAbout();
-  } else if (path === '/contact') {
+  } else if (normalizedPath === '/contact') {
     renderContact();
+  } else if (window.self !== window.top) {
+    // Inside VEC/EEC iframe with an unrecognised proxy path — fall back to home
+    history.replaceState({}, '', '/');
+    renderHome();
   } else {
     render404();
   }
