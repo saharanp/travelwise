@@ -72,6 +72,94 @@
   </script>
 
   <!-- ============================ -->
+  <!-- ENTITY MAP + TRAVELWISE HELPERS (synchronous, before Launch) -->
+  <!-- getEntityId must be defined before at.js calls targetPageParams -->
+  <!-- ============================ -->
+  <script>
+    var ENTITY_MAP = {
+      destinations: {
+        'goa':          'TF-DEST-001',
+        'manali':       'TF-DEST-002',
+        'kerala':       'TF-DEST-003',
+        'rajasthan':    'TF-DEST-004',
+        'kashmir':      'TF-DEST-005',
+        'andaman':      'TF-DEST-006',
+        'ladakh':       'TF-DEST-007',
+        'mussoorie':    'TF-DEST-008',
+        'shimla':       'TF-DEST-009',
+        'darjeeling':   'TF-DEST-010',
+        'bali':         'TF-DEST-011',
+        'maldives':     'TF-DEST-012',
+        'thailand':     'TF-DEST-013',
+        'singapore':    'TF-DEST-014',
+        'dubai':        'TF-DEST-015',
+        'paris':        'TF-DEST-016',
+        'switzerland':  'TF-DEST-017',
+        'london':       'TF-DEST-018',
+        'greece':       'TF-DEST-019',
+        'new-york':     'TF-DEST-020'
+      },
+      hotels: {
+        'taj-exotica-goa':             'TF-HOTEL-001',
+        'park-hyatt-goa':              'TF-HOTEL-002',
+        'span-resort-manali':          'TF-HOTEL-003',
+        'solang-valley-resort':        'TF-HOTEL-004',
+        'kumarakom-lake-resort':       'TF-HOTEL-005',
+        'coconut-lagoon-kerala':       'TF-HOTEL-006',
+        'rambagh-palace-jaipur':       'TF-HOTEL-007',
+        'taj-lake-palace-udaipur':     'TF-HOTEL-008',
+        'vivanta-dal-view-srinagar':   'TF-HOTEL-009',
+        'taj-exotica-andaman':         'TF-HOTEL-010',
+        'barefoot-havelock':           'TF-HOTEL-011',
+        'the-grand-dragon-ladakh':     'TF-HOTEL-012',
+        'jw-marriott-mussoorie':       'TF-HOTEL-013',
+        'wildflower-hall-shimla':      'TF-HOTEL-014',
+        'mayfair-darjeeling':          'TF-HOTEL-015',
+        'four-seasons-bali':           'TF-HOTEL-016',
+        'alaya-resort-ubud':           'TF-HOTEL-017',
+        'soneva-jani-maldives':        'TF-HOTEL-018',
+        'amanpuri-phuket':             'TF-HOTEL-019',
+        'anantara-riverside-bangkok':  'TF-HOTEL-020',
+        'marina-bay-sands-singapore':  'TF-HOTEL-021',
+        'burj-al-arab-dubai':          'TF-HOTEL-022',
+        'atlantis-the-palm-dubai':     'TF-HOTEL-023',
+        'le-bristol-paris':            'TF-HOTEL-024',
+        'badrutt-palace-stmoritz':     'TF-HOTEL-025',
+        'victoria-jungfrau-interlaken':'TF-HOTEL-026',
+        'the-savoy-london':            'TF-HOTEL-027',
+        'canaves-oia-santorini':       'TF-HOTEL-028',
+        'the-plaza-new-york':          'TF-HOTEL-029',
+        'the-high-line-hotel-nyc':     'TF-HOTEL-030'
+      }
+    };
+
+    window.travelwise = window.travelwise || {};
+
+    window.travelwise.getEntityId = function(path) {
+      if (path.startsWith('/destinations/')) {
+        var slug = path.replace('/destinations/', '').replace(/\/$/, '');
+        return ENTITY_MAP.destinations[slug] || null;
+      }
+      if (path.startsWith('/hotels/')) {
+        var slug = path.replace('/hotels/', '').replace(/\/$/, '');
+        return ENTITY_MAP.hotels[slug] || null;
+      }
+      return null;
+    };
+
+    window.travelwise.getPageType = function(path) {
+      if (path === '/' || path === '/index.html') return 'home';
+      if (path === '/destinations')               return 'destinations-list';
+      if (path.startsWith('/destinations/'))      return 'destination-detail';
+      if (path === '/hotels')                     return 'hotels-list';
+      if (path.startsWith('/hotels/'))            return 'hotel-detail';
+      if (path === '/about')                      return 'about';
+      if (path === '/contact')                    return 'contact';
+      return 'unknown';
+    };
+  </script>
+
+  <!-- ============================ -->
   <!-- ADOBE LAUNCH SCRIPT (Staging) -->
   <!-- Loads Adobe Target and other extensions configured in Launch -->
   <!-- ============================ -->
