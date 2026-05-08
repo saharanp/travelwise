@@ -20,14 +20,14 @@ window.travelwise.updateDataLayer = function(path) {
   /* ── subCategory ── */
   let subCategory = 'info';
   if (pageType === 'home')                                              subCategory = 'home';
-  if (pageType === 'destinations-listing' || pageType === 'destination-detail') subCategory = 'destinations';
-  if (pageType === 'hotels-listing'       || pageType === 'hotel-detail')       subCategory = 'hotels';
+  if (pageType === 'destinations-list' || pageType === 'destination-detail') subCategory = 'destinations';
+  if (pageType === 'hotels-list'       || pageType === 'hotel-detail')       subCategory = 'hotels';
 
   /* ── Page name ── */
   const pageNames = {
-    'home':                 'TravelWise Home',
-    'destinations-listing': 'Destinations',
-    'hotels-listing':       'Hotels',
+    'home':              'TravelWise Home',
+    'destinations-list': 'Destinations',
+    'hotels-list':       'Hotels',
     'about':                'About TravelWise',
     'contact':              'Contact TravelWise'
   };
