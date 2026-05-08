@@ -69,6 +69,30 @@
     } catch (e) {
       window.digitalData.user = { isLoggedIn: false };
     }
+
+    // Derive pageType from URL synchronously so it is set before Launch reads it
+    (function() {
+      var path = window.location.pathname;
+      var pageType = 'unknown';
+      if (path === '/' || path === '') {
+        pageType = 'home';
+      } else if (path === '/destinations') {
+        pageType = 'destinations-listing';
+      } else if (path === '/hotels') {
+        pageType = 'hotels-listing';
+      } else if (path.indexOf('/destinations/') === 0) {
+        pageType = 'destination-detail';
+      } else if (path.indexOf('/hotels/') === 0) {
+        pageType = 'hotel-detail';
+      } else if (path === '/about') {
+        pageType = 'about';
+      } else if (path === '/contact') {
+        pageType = 'contact';
+      }
+      if (!window.digitalData.page) window.digitalData.page = {};
+      if (!window.digitalData.page.pageInfo) window.digitalData.page.pageInfo = {};
+      window.digitalData.page.pageInfo.pageType = pageType;
+    })();
   </script>
 
   <!-- ============================ -->
@@ -149,9 +173,9 @@
 
     window.travelwise.getPageType = function(path) {
       if (path === '/' || path === '/index.html') return 'home';
-      if (path === '/destinations')               return 'destinations-list';
+      if (path === '/destinations')               return 'destinations-listing';
       if (path.startsWith('/destinations/'))      return 'destination-detail';
-      if (path === '/hotels')                     return 'hotels-list';
+      if (path === '/hotels')                     return 'hotels-listing';
       if (path.startsWith('/hotels/'))            return 'hotel-detail';
       if (path === '/about')                      return 'about';
       if (path === '/contact')                    return 'contact';

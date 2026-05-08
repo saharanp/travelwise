@@ -13,23 +13,23 @@ window.travelwise = window.travelwise || {};
 /* Builds and writes window.digitalData for the current route.
    Call this BEFORE dispatching the pagechange event so Launch
    always reads an up-to-date data layer. */
-window.travelwise.updateDataLayer = function() {
-  const path     = window.location.pathname;
+window.travelwise.updateDataLayer = function(path) {
+  path = path || window.location.pathname;
   const pageType = window.travelwise.getPageType(path);
 
   /* ── subCategory ── */
   let subCategory = 'info';
-  if (pageType === 'home')                                      subCategory = 'home';
-  if (pageType === 'destinations-list' || pageType === 'destination-detail') subCategory = 'destinations';
-  if (pageType === 'hotels-list'       || pageType === 'hotel-detail')       subCategory = 'hotels';
+  if (pageType === 'home')                                              subCategory = 'home';
+  if (pageType === 'destinations-listing' || pageType === 'destination-detail') subCategory = 'destinations';
+  if (pageType === 'hotels-listing'       || pageType === 'hotel-detail')       subCategory = 'hotels';
 
   /* ── Page name ── */
   const pageNames = {
-    'home':              'TravelWise Home',
-    'destinations-list': 'Destinations',
-    'hotels-list':       'Hotels',
-    'about':             'About TravelWise',
-    'contact':           'Contact TravelWise'
+    'home':                 'TravelWise Home',
+    'destinations-listing': 'Destinations',
+    'hotels-listing':       'Hotels',
+    'about':                'About TravelWise',
+    'contact':              'Contact TravelWise'
   };
   let pageName = pageNames[pageType] || 'TravelWise';
 

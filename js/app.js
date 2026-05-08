@@ -44,18 +44,19 @@ function router() {
 
   /* ── 1. Update data layer BEFORE dispatching event ── */
   if (window.travelwise && window.travelwise.updateDataLayer) {
-    window.travelwise.updateDataLayer();
+    window.travelwise.updateDataLayer(path);
   }
 
   /* ── 2. Dispatch enriched pagechange event for Adobe Launch ── */
+  const dd = window.digitalData;
   window.dispatchEvent(new CustomEvent('pagechange', {
     detail: {
       path:      path,
-      pageType:  window.travelwise ? window.travelwise.getPageType(path)  : null,
+      pageType:  (dd && dd.page && dd.page.pageInfo) ? dd.page.pageInfo.pageType : '',
       entityId:  window.travelwise ? window.travelwise.getEntityId(path)  : null,
-      isLoggedIn: window.digitalData ? window.digitalData.user.isLoggedIn  : false,
-      userTier:   window.digitalData ? window.digitalData.user.loyaltyTier : null,
-      timestamp:  new Date().toISOString()
+      isLoggedIn: (dd && dd.user) ? dd.user.isLoggedIn  : false,
+      userTier:   (dd && dd.user) ? dd.user.loyaltyTier : '',
+      timestamp:  Date.now()
     }
   }));
 
