@@ -2,11 +2,14 @@
    ─────────────────────────────────────────────────────
    On every route change:
      1. Update window.digitalData  ← FIRST (so Launch reads fresh data)
-     2. Dispatch 'pagechange' event with enriched detail
+     2. Dispatch 'pagechange' event with enriched detail (skipped on initial mount)
      3. Render the new page
 
    Adobe Launch will listen for the 'pagechange' event.
+   Initial page load is handled by Launch's Library Loaded event — not pagechange.
    Do NOT add Adobe Target / triggerView calls here. */
+
+let _isInitialMount = true;
 
 // Intercept all [data-link] anchor clicks and push to history
 document.addEventListener('click', e => {
@@ -48,17 +51,22 @@ function router() {
   }
 
   /* ── 2. Dispatch enriched pagechange event for Adobe Launch ── */
-  const dd = window.digitalData;
-  window.dispatchEvent(new CustomEvent('pagechange', {
-    detail: {
-      path:      path,
-      pageType:  (dd && dd.page && dd.page.pageInfo) ? dd.page.pageInfo.pageType : '',
-      entityId:  window.travelwise ? window.travelwise.getEntityId(path)  : null,
-      isLoggedIn: (dd && dd.user) ? dd.user.isLoggedIn  : false,
-      userTier:   (dd && dd.user) ? dd.user.loyaltyTier : '',
-      timestamp:  Date.now()
-    }
-  }));
+  // Suppressed on initial mount — Launch handles that via Library Loaded
+  if (_isInitialMount) {
+    _isInitialMount = false;
+  } else {
+    const dd = window.digitalData;
+    window.dispatchEvent(new CustomEvent('pagechange', {
+      detail: {
+        path:       path,
+        pageType:   (dd && dd.page && dd.page.pageInfo) ? dd.page.pageInfo.pageType : '',
+        entityId:   window.travelwise ? window.travelwise.getEntityId(path) : null,
+        isLoggedIn: (dd && dd.user) ? dd.user.isLoggedIn  : false,
+        userTier:   (dd && dd.user) ? dd.user.loyaltyTier : '',
+        timestamp:  Date.now()
+      }
+    }));
+  }
 
   /* ── 3. Render page ── */
   // at.js in VEC mode can redirect to /index.html — treat it as the root
