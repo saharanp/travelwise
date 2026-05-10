@@ -67,7 +67,7 @@ function renderDestinationDetail(slug) {
             </div>
 
             <section class="recommended-hotels-section" id="recommended-hotels-section">
-              <h2 class="rec-section-title">Hotels in <span class="rec-destination-name">${dest.name}</span></h2>
+              <h2 class="rec-section-title">Hotels to Explore</h2>
               <div id="recommended-hotels-container"></div>
             </section>
 
