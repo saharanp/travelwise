@@ -4,6 +4,9 @@ function renderHome() {
   document.title = 'TravelWise – Discover Your Next Adventure';
 
   const featured = destinations.slice(0, 6);
+  const popularHotels = hotels
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 4);
 
   const app = document.getElementById('app');
   app.innerHTML = `
@@ -78,15 +81,6 @@ function renderHome() {
       </div>
     </section>
 
-    <!-- ===== FEATURED HOTELS (Adobe Target) ===== -->
-    <section class="featured-hotels-section" style="padding: 4rem 1rem; background: linear-gradient(to bottom, #ffffff, #f9fafb);">
-      <div style="max-width: 1200px; margin: 0 auto;">
-        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: #1a1a1a; text-align: center;">Featured Hotels</h2>
-        <p style="text-align: center; color: #666; font-size: 1.125rem; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">Handpicked luxury properties curated just for you</p>
-        <div id="featured-hotels-container"></div>
-      </div>
-    </section>
-
     <!-- ===== FEATURED DESTINATIONS ===== -->
     <section class="section featured-section">
       <div class="container">
@@ -100,6 +94,24 @@ function renderHome() {
         <div style="text-align:center;margin-top:2.5rem;">
           <button class="btn btn-outline btn-lg" onclick="navigateTo('/destinations')">
             View All 20 Destinations →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== POPULAR HOTELS ===== -->
+    <section class="section" style="background:#fff;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Top-Rated Hotels</h2>
+          <p>Award-winning properties where world-class service meets breathtaking settings.</p>
+        </div>
+        <div class="hotel-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+          ${popularHotels.map(h => renderHotelCard(h)).join('')}
+        </div>
+        <div style="text-align:center;margin-top:2.5rem;">
+          <button class="btn btn-outline btn-lg" onclick="navigateTo('/hotels')">
+            Browse All 30 Hotels →
           </button>
         </div>
       </div>
