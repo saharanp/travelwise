@@ -198,10 +198,11 @@ function renderHotelDetail(slug) {
     </div>
 
     <!-- Similar Hotels (Adobe Target) -->
-    <section class="similar-hotels-section" style="padding: 3rem 1rem; background: #f9fafb;">
+    <section class="similar-hotels-section" style="padding: 4rem 1rem; background: linear-gradient(to bottom, #f9fafb, #ffffff); border-top: 1px solid #e5e7eb;">
       <div style="max-width: 1200px; margin: 0 auto;">
-        <h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; color: #1a1a1a;">Similar Hotels</h2>
-        <div id="similar-hotels-container"></div>
+        <h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 0.75rem; color: #1a1a1a; text-align: left;">Similar Hotels</h2>
+        <p style="color: #6b7280; font-size: 1rem; margin-bottom: 2rem;">Explore more properties like this one</p>
+        <div id="similar-hotels-container" style="min-height: 280px; position: relative;"></div>
       </div>
     </section>
   `;
