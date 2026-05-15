@@ -197,21 +197,11 @@ function renderHotelDetail(slug) {
       </div>
     </div>
 
-    <!-- Similar Hotels -->
-    <section class="section" style="background:#fff;">
-      <div class="container">
-        <div class="section-header">
-          <h2>Similar Hotels</h2>
-          <p>Other highly-rated properties you might enjoy.</p>
-        </div>
-        <div class="hotel-grid">
-          ${hotels
-            .filter(h => h.slug !== slug && h.starRating === hotel.starRating)
-            .sort((a, b) => b.rating - a.rating)
-            .slice(0, 3)
-            .map(h => renderHotelCard(h))
-            .join('')}
-        </div>
+    <!-- Similar Hotels (Adobe Target) -->
+    <section class="similar-hotels-section" style="padding: 3rem 1rem; background: #f9fafb;">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; color: #1a1a1a;">Similar Hotels</h2>
+        <div id="similar-hotels-container"></div>
       </div>
     </section>
   `;

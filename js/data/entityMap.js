@@ -68,6 +68,9 @@ window.travelwise.updateDataLayer = function(path) {
       ? hotels.find(h => h.slug === slug)
       : null;
     if (hotel) {
+      const hotelDest = (typeof destinations !== 'undefined')
+        ? destinations.find(d => d.slug === hotel.destinationSlug)
+        : null;
       hotelData = {
         id:              ENTITY_MAP.hotels[slug] || null,
         slug:            hotel.slug,
@@ -75,7 +78,8 @@ window.travelwise.updateDataLayer = function(path) {
         destinationSlug: hotel.destinationSlug,
         starRating:      hotel.starRating,
         pricePerNight:   hotel.pricePerNight,
-        rating:          hotel.rating
+        rating:          hotel.rating,
+        categoryId:      (hotelDest && hotelDest.type) ? hotelDest.type : ''
       };
       pageName = 'Hotel Detail - ' + hotel.name;
     }
@@ -104,6 +108,14 @@ window.travelwise.updateDataLayer = function(path) {
     }
   } catch (e) { /* sessionStorage unavailable */ }
 
+  /* ── categoryId (hotel or destination type, e.g. "Beach", "Mountain") ── */
+  let categoryId = '';
+  if (pageType === 'hotel-detail' && hotelData.categoryId) {
+    categoryId = hotelData.categoryId;
+  } else if (pageType === 'destination-detail' && destinationData.type) {
+    categoryId = destinationData.type;
+  }
+
   /* ── Write the full digital data layer ── */
   window.digitalData = {
     page: {
@@ -118,7 +130,8 @@ window.travelwise.updateDataLayer = function(path) {
       category: {
         primaryCategory: 'travel',
         subCategory:     subCategory
-      }
+      },
+      categoryId: categoryId
     },
     user:        userData,
     destination: destinationData,
